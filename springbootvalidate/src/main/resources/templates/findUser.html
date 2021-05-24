@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+热部署操作
+<form th:action="@{/user/findUser}" method="post">
+    <input type="text" name="username"><font color="red"><span th:text="${error}"/></font><br/>
+    <input type="submit" value="OK"/>
+</form>
+</body>
+</html>

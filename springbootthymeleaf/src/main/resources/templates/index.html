@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>geng</title>
+</head>
+<body>
+北京人民欢迎你
+<span th:text="${msg}">geng</span>
+<br>
+<span th:text="北京人民欢迎你"></span>
+<br>
+<input th:value="${msg}"></input>
+<br>
+<h3>Strings的使用</h3>
+<span th:text="${#strings.isEmpty(msg)}"></span>
+<br>
+<span th:text="${#strings.contains(msg,'s')}"></span>
+<br>
+<span th:text="${#strings.length(msg)}"></span>
+<br/>
+<h3>date的使用</h3>
+<span th:text="${date}"></span>
+<br/>
+<span th:text="${#dates.format(date)}"></span>
+<br/>
+<br/>
+<span th:text="${#dates.format(date,'yyyy/<</dd')}"></span>
+<br/>
+<span th:text="${#dates.year(date)}"></span>
+<br/>
+<span th:text="${#dates.month(date)}"></span>
+<br/>
+<span th:text="${#dates.day(date)}"></span>
+<br/>
+<h3>条件判断</h3>
+<div>
+    <span th:if="${sex}=='男'">性别:男</span>
+    <span th:if="${sex}=='女'">性别:女</span>
+</div>
+<h3>Switch操作</h3>
+<div th:switch="${id}">
+    <span th:case="1">ID 为1</span>
+    <span th:case="2">ID 为2</span>
+    <span th:case="3">ID 为3</span>
+    <span th:case="*">ID 为*</span>
+</div>
+
+
+<h3>each状态变量
+</h3>
+<div>
+    <table border="1" width="50%">
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Age</th>
+            <th>Index</th>
+            <th>Count</th>
+            <th>Size</th>
+            <th>Odd</th>
+            <th>Even</th>
+            <th>First</th>
+            <th>Last</th>
+        </tr>
+        <tr th:each="u, sui:${list}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.name}"></td>
+            <td th:text="${u.age}"></td>
+            <td th:text="${sui.index}"></td>
+            <td th:text="${sui.count}"></td>
+            <td th:text="${sui.size}"></td>
+            <td th:text="${sui.odd}"></td>
+            <td th:text="${sui.even}"></td>
+            <td th:text="${sui.first}"></td>
+            <td th:text="${sui.last}"></td>
+        </tr>
+    </table>
+</div>
+
+<h3>Map操作</h3>
+<div>
+
+    <table border="1" width="50%">
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Age</th>
+            <th>Key</th>
+        </tr>
+        <tr th:each="m:${map}">
+            <td th:text="${m.value.name}"></td>
+            <td th:text="${m.value.id}"></td>
+            <td th:text="${m.value.age}"></td>
+            <td th:text="${m.key}"></td>
+        </tr>
+    </table>
+</div>
+
+<h3>取request</h3>
+HttpServletRequest:<span th:text="${#request.getAttribute('req')}"></span>
+<span th:text="${#httpServletRequest.getAttribute('req')}"></span>
+<br/>
+HttpSession:<span th:text="${session.ses}"></span>
+HttpSession:<span th:text="${#session.getAttribute('ses')}"></span>
+<br/>
+Application:<span th:text="${application.app}"></span>
+Application:<span th:text="${#servletContext.getAttribute('app')}"></span>
+<h3>url</h3>
+<a th:href="@{http://www.baidu.com}">打开百度</a>
+<a th:href="@{/show2}">打开本地</a>
+<a th:href="@{~/project/resource}">跨项目连接</a>
+
+<h3>参数传递</h3>
+<hr/>
+<a th:href="@{/show2?id=1&name='geng'}">普通传递参数</a>
+<br/>
+<a th:href="@{/show2(id=2,name=kaggle)}">普通括号传递参数</a>
+<br/>
+<a th:href="@{'/show2?id='+${id}+'&name='+${name}}">普通服务器获取拼接传递参数</a>
+<br/>
+<a th:href="@{/show2(id=${id},name=${name})}">普通服务器获取括号传递参数</a>
+<br/>
+
+<h3>restful风格下的参数传递</h3>
+<a th:href="@{/show3/{id}/{name}(id=2000,name=geng)}">resful传递参数</a>
+<br/>
+<a th:href="@{/show4/{id}(id=2000,name=geng)}">半resful传递参数</a>
+<br/>
+
+</body>
+</html>

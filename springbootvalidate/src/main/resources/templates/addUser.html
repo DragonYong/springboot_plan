@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+</head>
+<body>
+<form th:action="@{/user/addUser}" method="post">
+    <input type="text" name="username"><font color="red"><span th:errors="${users.username}"/></font><br/>
+    <input type="text" name="usersex"><font color="red"><span th:errors="${users.usersex}"/> </font><br/>
+    <input type="submit" name="OK"/>
+</form>
+</body>
+</html>
